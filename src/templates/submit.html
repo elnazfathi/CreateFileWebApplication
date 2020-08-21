@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container submit_page_form">
+    <form id = "submit-page-form" action="/submit" method="post" class="needs-validation" novalidate>
+        <div class="col-md-3 mb-3">
+            <label for="input_id">ID</label>
+            <input type="number"
+                   onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                   class="form-control" id = "input_id" name = "input_id" min="1000000"  max="9999999" maxlength="7" required>
+            <div class="invalid-feedback">Please provide a 7-digit ID number.</div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="input_number">NUMBER</label>
+            <input type = "number"
+                   onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                   class="form-control" id = "input_number" name = "input_number" min="1000000000"  max="9999999999" maxlength="10" required>
+            <div class="invalid-feedback">Please provide a 10-digit number.</div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="input_comment">COMMENT</label>
+            <input type = "text" class="form-control" id = "input_comment" name = "input_comment" maxlength= "42" required>
+            <div class="invalid-feedback">Please do NOT leave this field empty.</div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="input_start_date">START_DATE</label>
+            <input type = "text"
+                   onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                   class="form-control" placeholder="YYYYMMDD" id = "input_start_date" name = "input_start_date" maxlength="8" required>
+            <div class="invalid-feedback">Please providde a date with the format of YYYYMMDD.</div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="input_end_date">END_DATE</label>
+            <input type = "text" class="form-control" placeholder="YYYYMMDD" id = "input_end_date" name = "input_end_date" required>
+            <div class="invalid-feedback">Please providde a  date with the format of YYYYMMDD.</div>
+        </div>
+
+        <button type="submit" class="btn btn-success"  id = "submit-button">Create File</button>
+    </form>
+</div>
+
+<script>
+//starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+       'use strict';
+       window.addEventListener('load', function() {
+         // Fetch all the forms we want to apply custom Bootstrap validation styles to
+         var forms = document.getElementsByClassName('needs-validation');
+         // Loop over them and prevent submission
+         var validation = Array.prototype.filter.call(forms, function(form) {
+           form.addEventListener('submit', function(event) {
+             if (form.checkValidity() === false) {
+               event.preventDefault();
+               event.stopPropagation();
+             }
+             form.classList.add('was-validated');
+           }, false);
+         });
+       }, false);
+    })();
+
+</script>
+{% endblock %}
