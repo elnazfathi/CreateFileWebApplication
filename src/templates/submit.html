@@ -33,7 +33,10 @@
         </div>
         <div class="col-md-4 mb-3">
             <label for="input_end_date">END_DATE</label>
-            <input type = "text" class="form-control" placeholder="YYYYMMDD" id = "input_end_date" name = "input_end_date" required>
+            <input type = "text"
+                   onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                   class="form-control" placeholder="YYYYMMDD" id = "input_end_date" name = "input_end_date" maxlength="8" required>
             <div class="invalid-feedback">Please providde a  date with the format of YYYYMMDD.</div>
         </div>
 
